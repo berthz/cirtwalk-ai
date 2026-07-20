@@ -1,6 +1,8 @@
-# v0.2.0
-- Brusselse voorbeeldroute toegevoegd
-- Automatische afstandsberekening
-- Volgend routepunt zichtbaar
-- Eenvoudige voortgangsweergave
-Vervang app.js en routes/brussel.json.
+# v0.3.0
+Nieuwe functies:
+- Route-lijn op de kaart
+- Informatiepaneel
+- Automatische voorleesfunctie (browser TTS)
+- Foto-veld voorbereid
+- Voortgangsteller
+Vervang: app.js, routes/brussel.json

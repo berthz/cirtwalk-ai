@@ -1,9 +1,9 @@
 {
-"name":"Brussel Centrum",
+"name":"Brussel",
 "stops":[
-{"name":"Cardo Hotel","lat":50.8573,"lng":4.3608},
-{"name":"Kruidtuin","lat":50.8552,"lng":4.3603},
-{"name":"Grote Markt","lat":50.8467,"lng":4.3525},
-{"name":"Manneken Pis","lat":50.8450,"lng":4.3499}
+{"name":"Cardo Hotel","lat":50.8573,"lng":4.3608,"story":"Welkom bij CityWalk AI. We vertrekken vanaf het Cardo Hotel."},
+{"name":"Kruidtuin","lat":50.8552,"lng":4.3603,"story":"De Kruidtuin werd aangelegd als botanische tuin en is nu een rustig stadspark."},
+{"name":"Grote Markt","lat":50.8467,"lng":4.3525,"story":"De Grote Markt behoort tot de mooiste pleinen van Europa."},
+{"name":"Manneken Pis","lat":50.8450,"lng":4.3499,"story":"Het beroemde beeldje is uitgegroeid tot hét symbool van Brussel."}
 ]
 }
