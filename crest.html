@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stadswandeling Crest</title>
+<style>
+  :root {
+    --primary-color: #1b4d3e;
+    --primary-dark: #123328;
+    --accent-color: #2e7d32;
+    --bg-color: #f4f6f8;
+    --card-bg: #ffffff;
+    --text-color: #333333;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    padding: 16px;
+    line-height: 1.6;
+    color: var(--text-color);
+    max-width: 600px;
+    margin: auto;
+    background-color: var(--bg-color);
+  }
+
+  h1 {
+    color: var(--primary-color);
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+
+  .subtitle {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .intro, .stop {
+    background: var(--card-bg);
+    padding: 18px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  }
+
+  .stop {
+    border-left: 5px solid var(--primary-color);
+  }
+
+  .stop h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+    font-size: 18px;
+  }
+
+  .btn-green {
+    display: block;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    margin: 20px 0;
+    box-shadow: 0 4px 10px rgba(46,125,50,0.3);
+    transition: background-color 0.2s;
+  }
+
+  .btn-green:hover {
+    background-color: #256428;
+  }
+
+  .audio-controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  button.audio-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background-color 0.2s;
+  }
+
+  button.audio-btn:hover {
+    background-color: var(--primary-dark);
+  }
+
+  button.audio-btn.pause {
+    background-color: #d97706;
+  }
+
+  button.audio-btn.pause:hover {
+    background-color: #b45309;
+  }
+
+  .settings-box {
+    background: #e2e8f0;
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .settings-box select {
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid #cbd5e1;
+  }
+</style>
+</head>
+<body>
+
+<h1>Stadswandeling Crest</h1>
+<div class="subtitle">Middeleeuws erfgoed aan de Drôme (Circa 3,5 km)</div>
+
+<div class="settings-box">
+  <label for="speedSelect"><strong>Leessnelheid gids:</strong></label>
+  <select id="speedSelect" onchange="updateSpeed()">
+    <option value="0.8">Rustig (0.8x)</option>
+    <option value="1.0" selected>Normaal (1.0x)</option>
+    <option value="1.2">Vlot (1.2x)</option>
+  </select>
+</div>
+
+<div class="intro">
+  <p>Welkom bij deze diepgaande interactieve stadswandeling door het historische hart van <strong>Crest</strong>. Deze route neemt je mee door steile middeleeuwse straten, langs oude ambachtswoningen en omhoog naar de machtige Tour de Crest.</p>
+  <p>Gebruik de knop hieronder om de route direct live te starten in Google Maps.</p>
+</div>
+
+<!-- Directe knop naar Google Maps -->
+<a class="btn-green" href="https://maps.google.com/?q=Crest,+France" target="_blank">Open route in Google Maps</a>
+
+<div class="stop">
+  <h3>Stop 1: Place du Général de Gaulle</h3>
+  <p>We trappen de wandeling af op dit levendige centrale plein. Hier proef je direct de Franse sfeer met gezellige terrassen en historische gevels. Het plein vormt het hedendaagse kloppende hart van de stad waar markten en evenementen plaatsvinden.</p>
+  <div class="audio-controls">
+    <button class="audio-btn" onclick="speakText(this, 'We trappen de wandeling af op dit levendige centrale plein. Hier proef je direct de Franse sfeer met gezellige terrassen en historische gevels. Het plein vormt het hedendaagse kloppende hart van de stad waar markten en evenementen plaatsvinden.')">▶ Beluister</button>
+  </div>
+</div>
+
+<div class="stop">
+  <h3>Stop 2: De Middeleeuwse Straatjes (Vieux Crest)</h3>
+  <p>Wanneer je de helling oploopt, betreed je het oude stadshart met zijn karakteristieke 'calades' (keienstraatjes) en overdekte doorgangen. Deze smalle stegen boden vroeger bescherming tegen de elementen en vijanden, en ademen nog volledig de sfeer van de middeleeuwen.</p>
+  <div class="audio-controls">
+    <button class="audio-btn" onclick="speakText(this, 'Wanneer je de helling oploopt, betreed je het oude stadshart met zijn karakteristieke calades ofwel keienstraatjes en overdekte doorgangen. Deze smalle stegen boden vroeger bescherming tegen de elementen en vijanden, en ademen nog volledig de sfeer van de middeleeuwen.')">▶ Beluister</button>
+  </div>
+</div>
+
+<div class="stop">
+  <h3>Stop 3: Tour de Crest (De Donjon)</h3>
+  <p>Na een pittige klim bereik je de iconische Tour de Crest. Met een hoogte van maar liefst 52 meter is dit de hoogste middeleeuwse donjon van Frankrijk. Ooit gebouwd als verdedigingswerk en later berucht als staatsgevangenis, biedt de top tegenwoordig een ongeëvenaard panorama over de vallei van de Drôme.</p>
+  <div class="audio-controls">
+    <button class="audio-btn" onclick="speakText(this, 'Na een pittige klim bereik je de iconische Tour de Crest. Met een hoogte van maar liefst 52 meter is dit de hoogste middeleeuwse donjon van Frankrijk. Ooit gebouwd als verdedigingswerk en later berucht als staatsgevangenis, biedt de top tegenwoordig een ongeëvenaard panorama over de vallei van de Drôme.')">▶ Beluister</button>
+  </div>
+</div>
+
+<div class="stop">
+  <h3>Stop 4: De Brug over de Drôme</h3>
+  <p>De route brengt je tot slot naar de oevers van de rivier de Drôme. Vanaf de brug heb je een prachtig gezicht op het stadje dat tegen de heuvel is opgebouwd. Een perfecte plek om in alle rust de indrukken van deze wandeling op je in te laten werken.</p>
+  <div class="audio-controls">
+    <button class="audio-btn" onclick="speakText(this, 'De route brengt je tot slot naar de oevers van de rivier de Drôme. Vanaf de brug heb je een prachtig gezicht op het stadje dat tegen de heuvel is opgebouwd. Een perfecte plek om in alle rust de indrukken van deze wandeling op je in te laten werken.')">▶ Beluister</button>
+  </div>
+</div>
+
+<script>
+  let currentUtterance = null;
+  let speechRate = 1.0;
+
+  function updateSpeed() {
+    speechRate = parseFloat(document.getElementById('speedSelect').value);
+  }
+
+  function speakText(button, text) {
+    if (!('speechSynthesis' in window)) {
+      alert("Spraak wordt helaas niet ondersteund door jouw browser.");
+      return;
+    }
+
+    if (window.speechSynthesis.speaking) {
+      window.speechSynthesis.cancel();
+      if (currentUtterance && currentUtterance.activeButton === button) {
+        button.innerHTML = "▶ Beluister";
+        button.classList.remove('pause');
+        currentUtterance = null;
+        return;
+      }
+    }
+
+    document.querySelectorAll('.audio-btn').forEach(btn => {
+      btn.innerHTML = "▶ Beluister";
+      btn.classList.remove('pause');
+    });
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'nl-NL';
+    utterance.rate = speechRate;
+    utterance.activeButton = button;
+
+    utterance.onend = function() {
+      button.innerHTML = "▶ Beluister";
+      button.classList.remove('pause');
+      currentUtterance = null;
+    };
+
+    currentUtterance = utterance;
+    button.innerHTML = "⏹ Stop";
+    button.classList.add('pause');
+    window.speechSynthesis.speak(utterance);
+  }
+</script>
+
+</body>
+</html>
