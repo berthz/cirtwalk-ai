@@ -1,231 +1,215 @@
-<!DOCTYPE html>
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stadswandeling Crest</title>
+<title>Ultieme Stadswandeling Crest</title>
 <style>
-  :root {
-    --primary-color: #1b4d3e;
-    --primary-dark: #123328;
-    --accent-color: #2e7d32;
-    --bg-color: #f4f6f8;
-    --card-bg: #ffffff;
-    --text-color: #333333;
-  }
-
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    padding: 16px;
-    line-height: 1.6;
-    color: var(--text-color);
-    max-width: 600px;
-    margin: auto;
-    background-color: var(--bg-color);
-  }
-
-  h1 {
-    color: var(--primary-color);
-    font-size: 24px;
-    text-align: center;
-    margin-bottom: 5px;
-  }
-
-  .subtitle {
-    text-align: center;
-    color: #666;
-    font-size: 14px;
-    margin-bottom: 20px;
-  }
-
-  .intro, .stop {
-    background: var(--card-bg);
-    padding: 18px;
-    border-radius: 12px;
-    margin-bottom: 16px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-  }
-
-  .stop {
-    border-left: 5px solid var(--primary-color);
-  }
-
-  .stop h3 {
-    margin-top: 0;
-    color: var(--primary-color);
-    font-size: 18px;
-  }
-
-  .btn-green {
-    display: block;
-    background-color: var(--accent-color);
-    color: white;
-    padding: 14px 20px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 10px;
-    margin: 20px 0;
-    box-shadow: 0 4px 10px rgba(46,125,50,0.3);
-    transition: background-color 0.2s;
-  }
-
-  .btn-green:hover {
-    background-color: #256428;
-  }
-
-  .audio-controls {
-    display: flex;
-    gap: 10px;
-    margin-top: 12px;
-  }
-
-  button.audio-btn {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 14px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    transition: background-color 0.2s;
-  }
-
-  button.audio-btn:hover {
-    background-color: var(--primary-dark);
-  }
-
-  button.audio-btn.pause {
-    background-color: #d97706;
-  }
-
-  button.audio-btn.pause:hover {
-    background-color: #b45309;
-  }
-
-  .settings-box {
-    background: #e2e8f0;
-    padding: 10px 14px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    font-size: 14px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .settings-box select {
-    padding: 4px 8px;
-    border-radius: 4px;
-    border: 1px solid #cbd5e1;
-  }
+:root {
+--primary-color: #1b4d3e;
+--primary-dark: #123328;
+--accent-color: #2e7d32;
+--bg-color: #f4f6f8;
+--card-bg: #ffffff;
+--text-color: #333333;
+}
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+padding: 16px;
+line-height: 1.6;
+color: var(--text-color);
+max-width: 600px;
+margin: auto;
+background-color: var(--bg-color);
+}
+h1 {
+color: var(--primary-color);
+font-size: 24px;
+text-align: center;
+margin-bottom: 5px;
+}
+.subtitle {
+text-align: center;
+color: #666;
+font-size: 14px;
+margin-bottom: 20px;
+}
+.intro, .stop {
+background: var(--card-bg);
+padding: 18px;
+border-radius: 12px;
+margin-bottom: 16px;
+box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+.stop {
+border-left: 5px solid var(--primary-color);
+}
+.stop h3 {
+margin-top: 0;
+color: var(--primary-color);
+font-size: 18px;
+}
+.btn-green {
+display: block;
+background-color: var(--accent-color);
+color: white;
+padding: 14px 20px;
+text-align: center;
+text-decoration: none;
+font-size: 16px;
+font-weight: bold;
+border-radius: 10px;
+margin: 20px 0;
+box-shadow: 0 4px 10px rgba(46,125,50,0.3);
+}
+.audio-controls {
+display: flex;
+gap: 10px;
+margin-top: 12px;
+}
+button.audio-btn {
+background-color: var(--primary-color);
+color: white;
+border: none;
+padding: 8px 14px;
+border-radius: 6px;
+cursor: pointer;
+font-weight: bold;
+font-size: 14px;
+display: inline-flex;
+align-items: center;
+gap: 6px;
+}
+button.audio-btn.pause {
+background-color: #d97706;
+}
+.settings-box {
+background: #e2e8f0;
+padding: 10px 14px;
+border-radius: 8px;
+margin-bottom: 20px;
+font-size: 14px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.settings-box select {
+padding: 4px 8px;
+border-radius: 4px;
+border: 1px solid #cbd5e1;
+}
 </style>
 </head>
 <body>
-
-<h1>Stadswandeling Crest</h1>
-<div class="subtitle">Middeleeuws erfgoed aan de Drôme (Circa 3,5 km)</div>
-
-<div class="settings-box">
-  <label for="speedSelect"><strong>Leessnelheid gids:</strong></label>
-  <select id="speedSelect" onchange="updateSpeed()">
-    <option value="0.8">Rustig (0.8x)</option>
-    <option value="1.0" selected>Normaal (1.0x)</option>
-    <option value="1.2">Vlot (1.2x)</option>
-  </select>
+​<h1>Ultieme Stadswandeling Crest</h1>
+<div class="subtitle">De complete ontdekkingsroute door middeleeuws Crest en omgeving (Circa 3 km)</div>
+​<div class="settings-box">
+<label for="speedSelect"><strong>Leessnelheid gids:</strong></label>
+<select id="speedSelect" onchange="updateSpeed()">
+<option value="0.8">Rustig (0.8x)</option>
+<option value="1.0" selected>Normaal (1.0x)</option>
+<option value="1.2">Vlot (1.2x)</option>
+</select>
 </div>
-
-<div class="intro">
-  <p>Welkom bij deze diepgaande interactieve stadswandeling door het historische hart van <strong>Crest</strong>. Deze route neemt je mee door steile middeleeuwse straten, langs oude ambachtswoningen en omhoog naar de machtige Tour de Crest.</p>
-  <p>Gebruik de knop hieronder om de route direct live te starten in Google Maps.</p>
+​<div class="intro">
+<p>Welkom bij de ultieme, diepgaande interactieve wandelgids van <strong>Crest</strong>, gelegen aan de oevers van de rivier de Drôme in de prachtige Franse regio Auvergne-Rhône-Alpes. Deze volledig uitgewerkte wandelroute door het historische hart van de stad beslaat circa 3 kilometer. Je ontdekt niet alleen de smalle middeleeuwse straatjes en de machtige donjon, maar krijgt ook uitgebreide historische en culturele achtergronden bij elke bezienswaardigheid.</p>
+<p>Klik op de groene knop hieronder om de geoptimaliseerde wandelroute inclusief alle stops (A t/m H) direct live te openen in de Google Maps-app.</p>
 </div>
-
-<!-- Directe knop naar Google Maps -->
-<a class="btn-green" href="https://maps.google.com/?q=Crest,+France" target="_blank">Open route in Google Maps</a>
-
-<div class="stop">
-  <h3>Stop 1: Place du Général de Gaulle</h3>
-  <p>We trappen de wandeling af op dit levendige centrale plein. Hier proef je direct de Franse sfeer met gezellige terrassen en historische gevels. Het plein vormt het hedendaagse kloppende hart van de stad waar markten en evenementen plaatsvinden.</p>
-  <div class="audio-controls">
-    <button class="audio-btn" onclick="speakText(this, 'We trappen de wandeling af op dit levendige centrale plein. Hier proef je direct de Franse sfeer met gezellige terrassen en historische gevels. Het plein vormt het hedendaagse kloppende hart van de stad waar markten en evenementen plaatsvinden.')">▶ Beluister</button>
-  </div>
+​<!-- Volledige Google Maps route-link met alle stops A t/m H verwerkt -->
+<a class="btn-green" href="[https://www.google.com/maps/dir/?api=1&origin=Place+du+G%C3%A9n%C3%A9ral+de+Gaulle,+Crest,+France&destination=Pont+de+Crest,+Crest,+France&waypoints=Vieux+Crest,+Crest,+France](https://www.google.com/maps/dir/?api=1&origin=Place+du+G%C3%A9n%C3%A9ral+de+Gaulle,+Crest,+France&destination=Pont+de+Crest,+Crest,+France&waypoints=Vieux+Crest,+Crest,+France)|Eglise+Saint-Sauveur,+Crest,+France|Tour+de+Crest,+Crest,+France|Quartier+des+Cordeliers,+Crest,+France|Porte+Neuve,+Crest,+France|Quai+B%C3%A9ranger,+Crest,+France&travelmode=walking" target="_blank">Open live wandelroute in Google Maps</a>
+​<div class="stop">
+<h3>Stop A: Place du Général de Gaulle</h3>
+<p>We trappen deze uitgebreide wandeling af op de Place du Général de Gaulle, het dynamische en levendige centrale plein dat fungeert als het kloppende hart van het moderne Crest. Omringd door prachtige schaduwrijke platanen, sfeervolle terrasjes, bakkers en historische gevels proef je hier direct de authentieke Franse dorpssfeer. In vroeger eeuwen was dit plein al een cruciale ontmoetingsplek voor reizigers, handelaars en lokale boeren die hun waren naar de markt brachten. Neem even de tijd om de levendigheid van de stad en de bedrijvigheid om je heen in je op te nemen. Terwijl je hier rondkijkt, zie je in de verte de imposante heuvel al oprijzen waar we straks naartoe zullen klimmen voor een onvergetelijk uitzicht over de vallei.</p>
+<div class="audio-controls">
+<button class="audio-btn" onclick="speakText(this, 'We trappen deze uitgebreide wandeling af op de Place du Général de Gaulle, het dynamische en levendige centrale plein dat fungeert als het kloppende hart van het moderne Crest. Omringd door prachtige schaduwrijke platanen, sfeervolle terrasjes, bakkers en historische gevels proef je hier direct de authentieke Franse dorpssfeer. In vroeger eeuwen was dit plein al een cruciale ontmoetingsplek voor reizigers, handelaars en lokale boeren die hun waren naar de markt brachten. Neem even de tijd om de levendigheid van de stad en de bedrijvigheid om je heen in je op te nemen. Terwijl je hier rondkijkt, zie je in de verte de imposante heuvel al oprijzen waar we straks naartoe zullen klimmen voor een onvergetelijk uitzicht over de vallei.')">▶ Beluister</button>
 </div>
-
-<div class="stop">
-  <h3>Stop 2: De Middeleeuwse Straatjes (Vieux Crest)</h3>
-  <p>Wanneer je de helling oploopt, betreed je het oude stadshart met zijn karakteristieke 'calades' (keienstraatjes) en overdekte doorgangen. Deze smalle stegen boden vroeger bescherming tegen de elementen en vijanden, en ademen nog volledig de sfeer van de middeleeuwen.</p>
-  <div class="audio-controls">
-    <button class="audio-btn" onclick="speakText(this, 'Wanneer je de helling oploopt, betreed je het oude stadshart met zijn karakteristieke calades ofwel keienstraatjes en overdekte doorgangen. Deze smalle stegen boden vroeger bescherming tegen de elementen en vijanden, en ademen nog volledig de sfeer van de middeleeuwen.')">▶ Beluister</button>
-  </div>
 </div>
-
-<div class="stop">
-  <h3>Stop 3: Tour de Crest (De Donjon)</h3>
-  <p>Na een pittige klim bereik je de iconische Tour de Crest. Met een hoogte van maar liefst 52 meter is dit de hoogste middeleeuwse donjon van Frankrijk. Ooit gebouwd als verdedigingswerk en later berucht als staatsgevangenis, biedt de top tegenwoordig een ongeëvenaard panorama over de vallei van de Drôme.</p>
-  <div class="audio-controls">
-    <button class="audio-btn" onclick="speakText(this, 'Na een pittige klim bereik je de iconische Tour de Crest. Met een hoogte van maar liefst 52 meter is dit de hoogste middeleeuwse donjon van Frankrijk. Ooit gebouwd als verdedigingswerk en later berucht als staatsgevangenis, biedt de top tegenwoordig een ongeëvenaard panorama over de vallei van de Drôme.')">▶ Beluister</button>
-  </div>
+​<div class="stop">
+<h3>Stop B: De Calades (Middeleeuwse Keienstraatjes)</h3>
+<p>Vanaf het centrale plein slaan we de hellende straten in en betreden we direct het historische middeleeuwse hart van de stad, lokaal bekend als Vieux Crest. Je loopt hier over de zogenaamde 'calades', steile en kronkelige straatjes die traditioneel zijn geplaveid met gladde rivierkeien die in sierlijke patronen zijn gelegd. Deze smalle, autovrije stegen worden aan weerszijden geflankeerd door eeuwenoude stenen gevels, karakteristieke houten luiken en soms nog overkoepelende steunbogen die de huizen met elkaar verbinden. In de middeleeuwen hadden deze smalle steegjes een tweeledige functie: ze boden de inwoners bescherming tegen de verschroeiende zomerzon én ze vormden een uiterst verdedigbaar labyrint mocht de stad ooit door vijandelijke troepen worden aangevallen. Let tijdens het wandelen goed op de kleine architectonische details, zoals oude uithangborden, stenen ornamenten en vervaagde inscripties die stille getuigen zijn van een rijk ambachtelijk verleden vol smeden, wevers en leerlooiers.</p>
+<div class="audio-controls">
+<button class="audio-btn" onclick="speakText(this, 'Vanaf het centrale plein slaan we de hellende straten in en betreden we direct het historische middeleeuwse hart van de stad, lokaal bekend als Vieux Crest. Je loopt hier over de zogenaamde calades, steile en kronkelige straatjes die traditioneel zijn geplaveid met gladde rivierkeien die in sierlijke patronen zijn gelegd. Deze smalle, autovrije stegen worden aan weerszijden geflankeerd door eeuwenoude stenen gevels, karakteristieke houten luiken en soms nog overkoepelende steunbogen die de huizen met elkaar verbinden. In de middeleeuwen hadden deze smalle steegjes een tweeledige functie: ze boden de inwoners bescherming tegen de verschroeiende zomerzon én ze vormden een uiterst verdedigbaar labyrint mocht de stad ooit door vijandelijke troepen worden aangevallen. Let tijdens het wandelen goed op de kleine architectonische details, zoals oude uithangborden, stenen ornamenten en vervaagde inscripties die stille getuigen zijn van een rijk ambachtelijk verleden vol smeden, wevers en leerlooiers.')">▶ Beluister</button>
 </div>
-
-<div class="stop">
-  <h3>Stop 4: De Brug over de Drôme</h3>
-  <p>De route brengt je tot slot naar de oevers van de rivier de Drôme. Vanaf de brug heb je een prachtig gezicht op het stadje dat tegen de heuvel is opgebouwd. Een perfecte plek om in alle rust de indrukken van deze wandeling op je in te laten werken.</p>
-  <div class="audio-controls">
-    <button class="audio-btn" onclick="speakText(this, 'De route brengt je tot slot naar de oevers van de rivier de Drôme. Vanaf de brug heb je een prachtig gezicht op het stadje dat tegen de heuvel is opgebouwd. Een perfecte plek om in alle rust de indrukken van deze wandeling op je in te laten werken.')">▶ Beluister</button>
-  </div>
 </div>
-
+​<div class="stop">
+<h3>Stop C: Eglise Saint-Sauveur</h3>
+<p>Na een sfeervolle klim door de straatjes bereiken we de historische kerk van Crest: de Eglise Saint-Sauveur. Dit indrukwekkende religieuze bouwwerk kent een zeer tumultueuze geschiedenis die diep verweven is met de lokale en regionale historie. De oorsprong van de kerk voert terug tot de vroege middeleeuwen, maar door de eeuwen heen is het gebouw meermaals zwaar beschadigd, geplunderd en weer herbouwd. Met name tijdens de woelige godsdienstoorlogen in de zestiende eeuw, waarin katholieken en hugenoten fel om de macht streden in deze regio, fungeerde het kerkgebouw herhaaldelijk als toneel van harde confrontaties en strategische bezettingen. Wanneer je de kerk van binnen bekijkt of de zware houten deuren nadert, zie je elementen uit verschillende bouwstijlen samenkomen. Het interieur herbergt prachtig gedetailleerd houtsnijwerk, sacrale kunstobjecten en schitterende glas-in-loodramen. Als de zon erop schijnt, werpen deze ramen een mystiek en kleurrijk licht over de stenen vloeren, wat zorgt voor een moment van diepe rust en bezinning te midden van de wandeling.</p>
+<div class="audio-controls">
+<button class="audio-btn" onclick="speakText(this, 'Na een sfeervolle klim door de straatjes bereiken we de historische kerk van Crest: de Eglise Saint-Sauveur. Dit indrukwekkende religieuze bouwwerk kent een zeer tumultueuze geschiedenis die diep verweven is met de lokale en regionale historie. De oorsprong van de kerk voert terug tot de vroege middeleeuwen, maar door de eeuwen heen is het gebouw meermaals zwaar beschadigd, geplunderd en weer herbouwd. Met name tijdens de woelige godsdienstoorlogen in de zestiende eeuw, waarin katholieken en hugenoten fel om de macht streden in deze regio, fungeerde het kerkgebouw herhaaldelijk als toneel van harde confrontaties en strategische bezettingen. Wanneer je de kerk van binnen bekijkt of de zware houten deuren nadert, zie je elementen uit verschillende bouwstijlen samenkomen. Het interieur herbergt prachtig gedetailleerd houtsnijwerk, sacrale kunstobjecten en schitterende glas-in-loodramen. Als de zon erop schijnt, werpen deze ramen een mystiek en kleurrijk licht over de stenen vloeren, wat zorgt voor een moment van diepe rust en bezinning te midden van de wandeling.')">▶ Beluister</button>
+</div>
+</div>
+​<div class="stop">
+<h3>Stop D: Tour de Crest (De Donjon)</h3>
+<p>Na een flinke, maar absoluut lonende klim door de steile steegjes bereiken we het absolute meesterwerk en herkenningspunt van de stad: de legendarische Tour de Crest. Met een duizelingwekkende hoogte van maar liefst 52 meter is dit met recht de allerhoogste middeleeuwse donjon (wachttoren en verdedigingswerk) van heel Frankrijk. Oorspronkelijk opgericht in de vroege middeleeuwen als feodaal kasteel om de strategische vallei van de Drôme en de omliggende handelsroutes strak onder controle te houden, kende de toren een bewogen en vaak duistere geschiedenis. In latere eeuwen, met name onder het ancien régime en de monarchie, werd de toren berucht en ingezet als zware staatsgevangenis waar politieke gevangenen en tegenstanders van de koning werden opgesloten. Wie de moed heeft om helemaal naar boven te klimmen, wordt beloond met een absoluut fenomenaal en adembenemend panorama. Vanaf het dak en de oude kantelen kijk je uit over de groene vallei, de glinsterende rivier en in de verte de imposante, ruige kalksteenwanden van het Vercors-massief.</p>
+<div class="audio-controls">
+<button class="audio-btn" onclick="speakText(this, 'Na een flinke, maar absoluut lonende klim door de steile steegjes bereiken we het absolute meesterwerk en herkenningspunt van de stad: de legendarische Tour de Crest. Met een duizelingwekkende hoogte van maar liefst 52 meter is dit met recht de allerhoogste middeleeuwse donjon van heel Frankrijk. Oorspronkelijk opgericht in de vroege middeleeuwen als feodaal kasteel om de strategische vallei van de Drôme en de omliggende handelsroutes strak onder controle te houden, kende de toren een bewogen en vaak duistere geschiedenis. In latere eeuwen, met name onder het ancien régime en de monarchie, werd de toren berucht en ingezet als zware staatsgevangenis waar politieke gevangenen en tegenstanders van de koning werden opgesloten. Wie de moed heeft om helemaal naar boven te klimmen, wordt beloond met een absoluut fenomenaal en adembenemend panorama. Vanaf het dak en de oude kantelen kijk je uit over de groene vallei, de glinsterende rivier en in de verte de imposante, ruige kalksteenwanden van het Vercors-massief.')">▶ Beluister</button>
+</div>
+</div>
+​<div class="stop">
+<h3>Stop E: Quartier des Cordeliers</h3>
+<p>Na het indrukwekkende geweld van de donjon zetten we de wandeling voort en dalen we via de oostelijke flank van de heuvel af richting het charmante Quartier des Cordeliers. Dit historische wijkje dankt zijn unieke naam en identiteit aan het voormalige klooster van de Franciscaner monniken — in Frankrijk 'les Cordeliers' genoemd vanwege het koord dat zij als riem om hun pij droegen — dat hier eeuwen geleden gevestigd was. Zodra je deze wijk binnenstapt, merk je dat de hectiek van het toeristische centrum verdwijnt en plaatsmaakt voor een serene, bijna idyllische rust. De straten zijn hier overzichtelijker en worden gekenmerkt door authentieke Provençaalse huizen met warme, aardse geeltinten, schattige luiken, verscholen binnentuinen waar vijgenbomen over de muren hangen, en historische stenen waterputten die herinneren aan een tijd waarin stromend water uit de kraan nog niet bestond. Het is een heerlijke plek om rustig doorheen te struinen en de typische lokale dorpssfeer in je op te nemen.</p>
+<div class="audio-controls">
+<button class="audio-btn" onclick="speakText(this, 'Na het indrukwekkende geweld van de donjon zetten we de wandeling voort en dalen we via de oostelijke flank van de heuvel af richting het charmante Quartier des Cordeliers. Dit historische wijkje dankt zijn unieke naam en identiteit aan het voormalige klooster van de Franciscaner monniken, die hier eeuwen geleden gevestigd waren. Zodra je deze wijk binnenstapt, merk je dat de hectiek van het toeristische centrum verdwijnt en plaatsmaakt voor een serene, bijna idyllische rust. De straten zijn hier overzichtelijker en worden gekenmerkt door authentieke Provençaalse huizen met warme aardse geeltinten, schattige luiken, verscholen binnentuinen waar vijgenbomen over de muren hangen, en historische stenen waterputten die herinneren aan een tijd waarin stromend water uit de kraan nog niet bestond. Het is een heerlijke plek om rustig doorheen te struinen en de typische lokale dorpssfeer in je op te nemen.')">▶ Beluister</button>
+</div>
+</div>
+​<div class="stop">
+<h3>Stop F: Porte Neuve (De Historische Stadspoort)</h3>
+<p>Onze ontdekkingsroute brengt ons vervolgens naar de rand van het historische stadscentrum, waar we oog in oog komen te staan met de Porte Neuve. Deze monumentale stadspoort vormde in de middeleeuwen een absoluut vitaal onderdeel van de zware vestingmuren die Crest moesten beschermen tegen rondtrekkende legers, plunderaars en vijandelijke machten. In die tijd werden de stadspoorten bij het vallen van de avond angstvallig gesloten en kon niemand zomaar meer de stad in of uit. Wanneer je onder de poort doorloopt, kun je goed voorstellen hoe wachters hier vroeger de wacht hielden en hoe de poort fungeerde als de officiële economische en verdedigende toegangsweg. Vanaf dit punt zie je bovendien heel duidelijk hoe het middeleeuwse Crest zich in de loop der eeuwen, toen de dreiging afnam en de bevolking groeide, buiten haar stenen muren heeft weten uit te breiden tot de levendige stad die het vandaag de dag is.</p>
+<div class="audio-controls">
+<button class="audio-btn" onclick="speakText(this, 'Onze ontdekkingsroute brengt ons vervolgens naar de rand van het historische stadscentrum, waar we oog in oog komen te staan met de Porte Neuve. Deze monumentale stadspoort vormde in de middeleeuwen een absoluut vitaal onderdeel van de zware vestingmuren die Crest moesten beschermen tegen rondtrekkende legers, plunderaars en vijandelijke machten. In die tijd werden de stadspoorten bij het vallen van de avond angstvallig gesloten en kon niemand zomaar meer de stad in of uit. Wanneer je onder de poort doorloopt, kun je goed voorstellen hoe wachters hier vroeger de wacht hielden en hoe de poort fungeerde als de officiële economische en verdedigende toegangsweg. Vanaf dit punt zie je bovendien heel duidelijk hoe het middeleeuwse Crest zich in de loop der eeuwen, toen de dreiging afnam en de bevolking groeide, buiten haar stenen muren heeft weten uit te breiden tot de levendige stad die het vandaag de dag is.')">▶ Beluister</button>
+</div>
+</div>
+​<div class="stop">
+<h3>Stop G: De Oever van de Rivier de Drôme</h3>
+<p>Na al dat geklim en slenteren door de stenen straatjes voert de route ons naar de verfrissende en welkome oevers van de rivier de Drôme. De Drôme is een absoluut uniek natuurverschijnsel: het is een van de weinige resterende wilde en ongestuwde rivieren in heel Frankrijk, wat betekent dat haar benedenloop vrij is van grote dammen en kunstmatige barrières. Hierdoor krult en meandert het kristalheldere water zich op geheel natuurlijke wijze door het ruige landschap. Neem hier even de tijd om op een steen aan de waterkant te gaan zitten. Luister naar het rustgevende, kabbelende geluid van het water over de kiezelbede en laat je blik dwalen over de indrukwekkende, steile kalkstenen rotswanden en groene heuvels die de riviervallei flankeren. Het is een oase van rust en een perfecte plek om even diep adem te halen voordat we aan de laatste etappe van de wandeling beginnen.</p>
+<div class="audio-controls">
+<button class="audio-btn" onclick="speakText(this, 'Na al dat geklim en slenteren door de stenen straatjes voert de route ons naar de verfrissende en welkome oevers van de rivier de Drôme. De Drôme is een absoluut uniek natuurverschijnsel: het is een van de weinige resterende wilde en ongestuwde rivieren in heel Frankrijk, wat betekent dat haar benedenloop vrij is van grote dammen en kunstmatige barrières. Hierdoor krult en meandert het kristalheldere water zich op geheel natuurlijke wijze door het ruige landschap. Neem hier even de tijd om op een steen aan de waterkant te gaan zitten. Luister naar het rustgevende, kabbelende geluid van het water over de kiezelbede en laat je blik dwalen over de indrukwekkende, steile kalkstenen rotswanden en groene heuvels die de riviervallei flankeren. Het is een oase van rust en een perfecte plek om even diep adem te halen voordat we aan de laatste etappe van de wandeling beginnen.')">▶ Beluister</button>
+</div>
+</div>
+​<div class="stop">
+<h3>Stop H: Einde bij de Historische Brug (Pont de Crest)</h3>
+<p>We sluiten onze uitgebreide en indrukwekkende stadswandeling af bij de schilderachtige en historische brug over de Drôme (Pont de Crest). Vanaf dit perfecte uitkijkpunt heb je ongetwijfeld het mooiste en meest iconische fotomoment van de hele dag. Je ziet hier hoe het middeleeuwse stadje en de reusachtige donjon majestueus uittorenen boven de rivier en de vallei, prachtig omlijst door de natuurlijke elementen van water, steen en groen. Dit is de ultieme plek om even neer te strijken op een bankje, de indrukken, verhalen en kilometers van deze wandeling de revue te laten passeren, en te genieten van het pure Franse vakantiegevoel. Vanaf hier loop je bovendien binnen enkele minuten weer terug naar het gezellige centrum of het station. Bedankt voor het wandelen en tot de volgende route!</p>
+<div class="audio-controls"> 
+<button class="audio-btn" onclick="speakText(this, 'We sluiten onze uitgebreide en indrukwekkende stadswandeling af bij de schilderachtige en historische brug over de Drôme. Vanaf dit perfecte uitkijkpunt heb je ongetwijfeld het mooiste en meest iconische fotomoment van de hele dag. Je ziet hier hoe het middeleeuwse stadje en de reusachtige donjon majestueus uittorenen boven de rivier en de vallei, prachtig omlijst door de natuurlijke elementen van water, steen en groen. Dit is de ultieme plek om even neer te strijken op een bankje, de indrukken, verhalen en kilometers van deze wandeling de revue te laten passeren, en te genieten van het pure Franse vakantiegevoel. Vanaf hier loop je bovendien binnen enkele minuten weer terug naar het gezellige centrum of het station. Bedankt voor het wandelen en tot de volgende route!')">▶ Beluister</button>
+</div>
+</div>
 <script>
-  let currentUtterance = null;
-  let speechRate = 1.0;
-
-  function updateSpeed() {
-    speechRate = parseFloat(document.getElementById('speedSelect').value);
-  }
-
-  function speakText(button, text) {
-    if (!('speechSynthesis' in window)) {
-      alert("Spraak wordt helaas niet ondersteund door jouw browser.");
-      return;
-    }
-
-    if (window.speechSynthesis.speaking) {
-      window.speechSynthesis.cancel();
-      if (currentUtterance && currentUtterance.activeButton === button) {
-        button.innerHTML = "▶ Beluister";
-        button.classList.remove('pause');
-        currentUtterance = null;
-        return;
-      }
-    }
-
-    document.querySelectorAll('.audio-btn').forEach(btn => {
-      btn.innerHTML = "▶ Beluister";
-      btn.classList.remove('pause');
-    });
-
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'nl-NL';
-    utterance.rate = speechRate;
-    utterance.activeButton = button;
-
-    utterance.onend = function() {
-      button.innerHTML = "▶ Beluister";
-      button.classList.remove('pause');
-      currentUtterance = null;
-    };
-
-    currentUtterance = utterance;
-    button.innerHTML = "⏹ Stop";
-    button.classList.add('pause');
-    window.speechSynthesis.speak(utterance);
-  }
+let currentUtterance = null;
+let speechRate = 1.0;
+function updateSpeed() {
+speechRate = parseFloat(document.getElementById('speedSelect').value);
+}
+function speakText(button, text) {
+if (!('speechSynthesis' in window)) {
+alert("Spraak wordt helaas niet ondersteund door jouw browser.");
+return;
+}
+if (window.speechSynthesis.speaking) {
+window.speechSynthesis.cancel();
+if (currentUtterance && currentUtterance.activeButton === button) {
+button.innerHTML = "▶ Beluister";
+button.classList.remove('pause');
+currentUtterance = null;
+return;
+}
+}
+document.querySelectorAll('.audio-btn').forEach(btn => {
+btn.innerHTML = "▶ Beluister";
+btn.classList.remove('pause');
+});
+const utterance = new SpeechSynthesisUtterance(text);
+utterance.lang = 'nl-NL';
+utterance.rate = speechRate;
+utterance.activeButton = button;
+utterance.onend = function() {
+button.innerHTML = "▶ Beluister";
+button.classList.remove('pause');
+currentUtterance = null;
+};
+currentUtterance = utterance;
+button.innerHTML = "⏹ Stop";
+button.classList.add('pause');
+window.speechSynthesis.speak(utterance);
+}
 </script>
-
 </body>
 </html>
