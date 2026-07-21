@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactieve Avondwandeling Kortrijk - Premium Luistereditie</title>
+    <style>
+        :root {
+            --primary: #1e293b;
+            --accent: #d97706;
+            --background: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #334155;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px 10px;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+            padding: 24px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 24px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 16px;
+        }
+
+        h1 {
+            font-size: 22px;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .meta {
+            font-size: 14px;
+            color: var(--text-light);
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .controls-panel {
+            background: #f1f5f9;
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .controls-panel label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--primary);
+            font-size: 14px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: white;
+            font-size: 14px;
+            color: var(--text);
+            outline: none;
+        }
+
+        .btn-maps {
+            display: block;
+            width: 100%;
+            background-color: #16a34a;
+            color: white;
+            text-align: center;
+            padding: 14px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(22, 163, 74, 0.2);
+        }
+
+        .route-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .route-item {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            background: #fff;
+            transition: all 0.2s;
+        }
+
+        .route-item.playing {
+            border-color: var(--accent);
+            background-color: #fffbeb;
+        }
+
+        .route-item.paused {
+            border-color: #94a3b8;
+            background-color: #f8fafc;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .badge {
+            background: var(--primary);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .title {
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--primary);
+            flex-grow: 1;
+            margin-left: 8px;
+        }
+
+        .play-btn {
+            background: #e2e8f0;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: background 0.2s;
+        }
+
+        .route-item.playing .play-btn {
+            background: var(--accent);
+            color: white;
+        }
+
+        .route-item.paused .play-btn {
+            background: #64748b;
+            color: white;
+        }
+
+        .description {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-top: 4px;
+            margin-bottom: 8px;
+        }
+
+        .text-toggle-btn {
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 4px 0;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            outline: none;
+        }
+
+        .full-text {
+            display: none;
+            font-size: 14px;
+            color: var(--text);
+            background: #f8fafc;
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 8px;
+            border-left: 3px solid var(--accent);
+            text-align: justify;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Kortrijk Premium Luistergids</h1>
+        <div class="meta">
+            <span>🚶 4.5 km</span>
+            <span>⏱️ Uitgebreide Audio-ervaring</span>
+        </div>
+    </header>
+
+    <div class="controls-panel">
+        <label for="voice-select">Kies een voorleesstem:</label>
+        <select id="voice-select">
+            <option value="">Laden van beschikbare stemmen...</option>
+        </select>
+    </div>
+
+    <a href="https://www.google.com/maps/dir/Kortrijk+Station/Broeltorens,+Kortrijk/St.Martenskerk,+Kortrijk/Grote+Markt,+Kortrijk/Stadhuis+Kortrijk/Belfort+Kortrijk/Begijnhof+Kortrijk/Budatoren,+Kortrijk/Leieboorden,+Kortrijk/Kortrijk+Station/" class="btn-maps" target="_blank">🗺️ Open in Google Maps</a>
+
+    <div class="route-list">
+        <!-- Start -->
+        <div class="route-item" id="item-start">
+            <div class="item-header">
+                <span class="badge">START</span>
+                <span class="title">Station Kortrijk - De Poort tot de Groeningestad</span>
+                <button class="play-btn" onclick="toggleSpeech('item-start')">▶</button>
+            </div>
+            <div class="description">Welkom in Kortrijk. Zet je schrap voor een fascinerende wandeling door de rijke geschiedenis van de Leiestad.</div>
+            <button class="text-toggle-btn" onclick="toggleText('item-start')">📖 Volledige tekst meelezen...</button>
+            <div class="full-text">Welkom in Kortrijk, de bruisende parel aan de Leie en de historische hartslag van Zuid-West-Vlaanderen! Je staat hier bij het station, een uitstekend startpunt om de stad te verkennen. Kortrijk is een stad van uitersten: doordrenkt van middeleeuwse glorie, legendarische veldslagen en linnenhandel, maar tegelijkertijd springlevend, innoverend en hip. Al in de Romeinse tijd was dit een belangrijke nederzetting onder de naam 'Cortoriacum'. Maar echt wereldfaam verwierf de stad door de legendarische Guldensporenslag van 1302, waar ambachtslieden en boeren het machtige Franse ridderleger versloegen. Terwijl we zo dadelijk door het historische centrum trekken, zul je merken hoe prachtig het verleden en hedendaagse architectuur hier hand in hand gaan. Zet je wandeltempo op een ontspannen stand, adem de frisse avondlucht in en laat je meevoeren door de verhalen van deze trotse Vlaamse stad.</div>
+        </div>
+
+        <!-- 1 -->
+        <div class="route-item" id="item-1">
+            <div class="item-header">
+                <span class="badge">1</span>
+                <span class="title">Broeltorens - Middeleeuwse Wachters aan de Leie</span>
+                <button class="play-btn" onclick="toggleSpeech('item-1')">▶</button>
+            </div>
+            <div class="description">Bewonder de iconische middeleeuwse torens die de wacht houden over de rivier.</div>
+            <button class="text-toggle-btn" onclick="toggleText('item-1')">📖 Volledige tekst meelezen...</button>
+            <div class="full-text">Je staat nu voor de Broeltorens, wellicht het meest iconische symbool van Kortrijk. Deze twee robuuste, middeleeuwse torens staan aan weerszijden van de rivier de Leie en vormden ooit een vitaal onderdeel van de veertiende-eeuwse stadsomwalling. De toren aan de rechterkant van de oever is de Speyeltoren, gebouwd rond 1385 om de scheepvaart op de Leie te controleren en te belasten. De linker toren is de Ingelburgtoren, opgericht in 1415. Tussen beide torens liep een zware muur met een poort die de toegang over water kon afsluiten. In een tijd waarin steden continu op hun hoede moesten zijn voor vijandige legers en plunderaars, waren deze torens strategische verdedigingswerken. Ze zijn opgetrokken uit karakteristieke, donkere bakstenen en getuigen van de militaire macht van de graven van Vlaanderen. Als de avond valt en de verlichting aanspringt, spiegelen de eeuwenoude stenen zich prachtig in het water van de Leie. Ze vormen een romantisch en tegelijk ontzagwekkend decor dat je meteen terugvoert naar de middeleeuwen.</div>
+        </div>
+
+        <!-- 2 -->
+        <div class="route-item" id="item-2">
+            <div class="item-header">
+                <span class="badge">2</span>
+                <span class="title">Sint-Maartenskerk - Gotische Pracht en de 'Lange Miele'</span>
+                <button class="play-btn" onclick="toggleSpeech('item-2')">▶</button>
+            </div>
+            <div class="description">Ontdek de indrukwekkende kerk en luister naar het verhaal van de fiere beiaard.</div>
+            <button class="text-toggle-btn" onclick="toggleText('item-2')">📖 Volledige tekst meelezen...</button>
+            <div class="full-text">We wandelen door naar de Sint-Maartenskerk, de hoofdkerk van Kortrijk. Dit schitterende gotische godshuis dateert in zijn huidige vorm grotendeels uit de vijftiende eeuw, nadat een eerdere kerk zwaar beschadigd raakte. Wie de kerk nadert, kan niet om de massieve, imposante toren heen die bijna tachtig meter de lucht in priemt. De Kortrijkzanen noemen deze toren liefkozend 'Lange Miele'. Bovenin hangt een historische beiaard waarvan de klanken al eeuwenlang over de stad galmen. Binnen in de kerk vind je een schat aan religieuze kunst, waaronder een adembenemend neogotisch sacramentshuis van wel twaalf meter hoog, dat met zijn fijn uitgesneden steenhouwwerk lijkt op een kantwerk van steen. De kerk heeft door de eeuwen heen heel wat doorstaan, van godsdiensttwisten tot oorlogsgeweld, maar herrijst telkens in al haar glorie. Neem even de tijd om de gedetailleerde gevels en de serene sfeer op je te laten inwerken.</div>
+        </div>
+
+        <!-- 3 -->
+        <div class="route-item" id="item-3">
+            <div class="item-header">
+                <span class="badge">3</span>
+                <span class="title">Grote Markt - Het Bruisende Hart van de Stad</span>
+                <button class="play-btn" onclick="toggleSpeech('item-3')">▶</button>
+            </div>
+            <div class="description">Proef de sfeer op het historische marktplein omringd door gezellige terrassen.</div>
+            <button class="text-toggle-btn" onclick="toggleText('item-3')">📖 Volledige tekst meelezen...</button>
+            <div class="full-text">Je betreedt nu de Grote Markt, het kloppende hart van Kortrijk. Dit ruime, autoluwe plein is al eeuwenlang de centrale ontmoetingsplek voor handel, feesten en revoluties. Rondom het plein zie je een harmonieuze mix van historische gevels en levendige horecagezelligheid. Hier kwamen vroeger de handelaren uit heel Europa samen om te handelen in het beroemde Kortrijkse linnen, dat bekend stond als het fijnste ter wereld. De linnenindustrie maakte de stad rijk en invloedrijk. Vandaag de dag is de Grote Markt vooral de plek waar inwoners en bezoekers samenkomen om te genieten van een lokaal streekbier of een heerlijke maaltijd. De sfeer is er gemoedelijk, warm en uitnodigend. Terwijl je over de keien loopt, voel je de energie van een stad die haar historische verleden perfect weet te combineren met een eigentijdse, Bourgondische levensstijl.</div>
+        </div>
+
+        <!-- 4 -->
+        <div class="route-item" id="item-4">
+            <div class="item-header">
+                <span class="badge">4</span>
+                <span class="title">Stadhuis van Kortrijk - Schoonheid en Renaissancedetails</span>
+                <button class="play-btn" onclick="toggleSpeech('item-4')">▶</button>
+            </div>
+            <div class="description">Bewonder de rijk versierde gevel en de standbeelden van historische vorsten.</div>
+            <button class="text-toggle-btn" onclick="toggleText('item-4')">📖 Volledige tekst meelezen...</button>
+            <div class="full-text">Direct op de Grote Markt vind je het prachtige stadhuis van Kortrijk, een meesterwerk in laatgotische en renaissancestijl, gebouwd rond 1520. Als je de gevel bekijkt, zie je meteen waarom dit gebouw zo bijzonder is. De nissen in de voorgevel zijn gevuld met beelden van de graven van Vlaanderen en vorsten die een stempel op de stad hebben gedrukt. Boven de ramen prijken prachtig geschilderde wapenschilden van de omliggende steden en heerlijkheden. Binnen in het stadhuis bevinden zich twee historische schepenhuizen: de Schouw van de Vierschaar en de Schepenzaal. In de schepenzaal bevindt zich een monumentale schouw in albast en marmer uit 1535, ontworpen door de kunstenaar Jean de Porre, die scènes uit de lokale geschiedenis en mythologie afbeeldt. Dit gebouw ademt de rijkdom en de bestuurlijke trots van het middeleeuwse Kortrijk.</div>
+        </div>
+
+        <!-- 5 -->
+        <div class="route-item" id="item-5">
+            <div class="item-header">
+                <span class="badge">5</span>
+                <span class="title">Het Belfort - UNESCO Werelderfgoed met karakter</span>
+                <button class="play-btn" onclick="toggleSpeech('item-5')">▶</button>
+            </div>
+            <div class="description">Sta stil bij de eeuwenoude wachter van de vrijheid en zijn eigenwijze spits.</div>
+            <button class="text-toggle-btn" onclick="toggleText('item-5')">📖 Volledige tekst meelezen...</button>
+            <div class="full-text">Pal naast het stadhuis rijst het middeleeuwse Belfort van Kortrijk omhoog, een trotse getuige van de stedelijke vrijheden en autonomie, en erkend als UNESCO-werelderfgoed. Oorspronkelijk gebouwd rond 1307, fungeerde deze toren als wachttoren tegen brand en vijanden, en als opslagplaats voor de stadskas en de stadsrechten. Bovenop de toren prijkt geen traditionele spits, maar een sierlijke koperen beeldenkop en een windwijzer in de vorm van een Mercurius of een draak, afhankelijk van hoe je het bekijkt. Het carillon van de toren laat regelmatig melodieën horen over de binnenstad. Het Belfort symboliseerde de macht van de poorters en burgers die hun eigen stad wilden beschermen tegen de almacht van de adel. Neem even de tijd om omhoog te kijken naar dit architectonische monument dat de tand des tijds glansrijk heeft doorstaan.</div>
+        </div>
+
+        <!-- 6 -->
+        <div class="route-item" id="item-6">
+            <div class="item-header">
+                <span class="badge">6</span>
+                <span class="title">Sint-Janskerk - De Schatkamer van Onze-Lieve-Vrouw</span>
+                <button class="play-btn" onclick="toggleSpeech('item-6')">▶</button>
+            </div>
+            <div class="description">Bezoek de plek van de Guldensporenslag en de legendarische Gravenkapel.</div>
+            <button class="text-toggle-btn" onclick="toggleText('item-6')">📖 Volledige tekst meelezen...</button>
+            <div class="full-text">We wandelen een stukje door naar de historische Onze-Lieve-Vrouwekerk, vaak in één adem genoemd met de nabijgelegen Sint-Janswijk. Deze kerk werd in de dertiende eeuw gesticht door graaf Boudewijn de Negende van Vlaanderen. Maar de absolute parel van dit complex is de Gravenkapel, die in de veertiende eeuw werd toegevoegd. Deze kapel wordt beschouwd als het vroegste voorbeeld van gotische bouwkunst in België en is een absoluut juweeltje. Ze werd gebouwd ter ere van graaf Lodewijk van Male, maar staat vooral bekend om haar sublieme beeldhouwwerk en de prachtige wandtapijten. Binnen vind je ook het beroemde beeld van 'St katrien' en herinneringen aan de Guldensporenslag van 1302, waar de gouden sporen van verslagen Franse ridders als trofeeën naartoe werden gebracht. De serene stilte in deze kerk vormt een prachtig contrast met het levendige stadsleven erbuiten.</div>
+        </div>
+
+        <!-- 7 -->
+        <div class="route-item" id="item-7">
+            <div class="item-header">
+                <span class="badge">7</span>
+                <span class="title">Het Begijnhof - Oase van Rust en UNESCO-Erfgoed</span>
+                <button class="play-btn" onclick="toggleSpeech('item-7')">▶</button>
+            </div>
+            <div class="description">Stap binnen in een witgeschilderd, idyllisch minidorpje midden in de stad.</div>
+            <button class="text-toggle-btn" onclick="toggleText('item-7')">📖 Volledige tekst meelezen...</button>
+            <div class="full-text">Welkom in het Sint-Elisabethbegijnhof, een betoverende plek die eveneens op de UNESCO-werelderfgoedlijst prijkt. Zodra je door de historische toegangspoort stapt, lijk je in een andere wereld en een andere eeuw terecht te komen. Geen auto's, geen lawaai, maar schilderachtige, witgekalkte huisjes uit de zeventiende en achttiende eeuw, geplaveide straatjes en een overvloed aan groen. Begijnhofvrouwen waren vrome vrouwen die kozen voor een gemeenschappelijk leven in godsdienst en naastenliefde, zonder echter de strenge kloostergeloften af te leggen; ze behielden hun eigen bezit en konden de gemeenschap op elk moment verlaten. Dit Kortrijkse begijnhof werd gesticht in 1238 door gravin Johanna van Vlaanderen. Het laatste begijntje overleed hier in het jaar 2013, waarmee een eeuwenlange traditie werd afgesloten. Wandel op je gemak door de stille steegjes, bewonder de heiligenbeelden in de nissen en geniet van de ongekende rust op deze unieke historische plek.</div>
+        </div>
+
+        <!-- 8 -->
+        <div class="route-item" id="item-8">
+            <div class="item-header">
+                <span class="badge">8</span>
+                <span class="title">Budatoren & Budascoop - Het Creatieve en Eigentijdse Hart</span>
+                <button class="play-btn" onclick="toggleSpeech('item-8')">▶</button>
+            </div>
+            <div class="description">Ervaar de moderne transformatie van Kortrijk als bruisende designstad.</div>
+            <button class="text-toggle-btn" onclick="toggleText('item-8')">📖 Volledige tekst meelezen...</button>
+            <div class="full-text">We verplaatsen ons van het diepe middeleeuwse verleden naar het eigentijdse Kortrijk en belanden in de Budatoren en de Budascoop-omgeving. Kortrijk is allang niet meer alleen een stad van geschiedenis; het is vandaag de dag uitgeroepen tot officiële UNESCO Creative City op het vlak van design. De oude industriële panden en fabrieken langs de Leie, waar vroeger textiel werd verwerkt en gewassen, zijn op een geniale manier getransformeerd tot hippe hotspots voor kunstenaars, creatieve ondernemers, filmhuizen en innovatieve startups. De Budatoren steekt krachtig af tegen de lucht en symboliseert de vernieuwingsdrang van de stad. Hier proef je de jonge, frisse energie die Kortrijk zo uniek maakt: respect voor het erfgoed, gecombineerd met een niet te stoppen drang naar vernieuwing, architectuur en cultuur.</div>
+        </div>
+
+         <!-- 9 -->
+        <div class="route-item" id="item-9">
+            <div class="item-header">
+                <span class="badge">9</span>
+                <span class="title">Leieboorden - De Vernieuwde Waterkant en Terrasjes</span>
+                <button class="play-btn" onclick="toggleSpeech('item-9')">▶</button>
+            </div>
+            <div class="description">Geniet van de schitterende vernieuwde Leieboorden en het avondlicht op het water.</div>
+            <button class="text-toggle-btn" onclick="toggleText('item-9')">📖 Volledige tekst meelezen...</button>
+            <div class="full-text">We sluiten onze wandeling af langs de vernieuwde Leieboorden. Jarenlang werd de rivier vooral gezien als een economische transportader, maar dankzij een grootschalig stadsvernieuwingsproject is de Leie weer helemaal teruggegeven aan de bewoners en wandelaars. Brede wandelpromenades, groene grasvelden aan het water en gezellige terrasjes nodigen uit om heerlijk te ontspannen. Terwijl de avond valt en de sfeervolle verlichting van de kaden en bruggen aanspringt, zie je het water zachtjes stromen langs historische en moderne architectuur. Dit is de ultieme plek om even achterover te leunen, alle indrukken van de wandeling te laten bezinken en te genieten van de warme gastvrijheid van Kortrijk. Vanaf hier is het een korte wandeling terug naar het station of het hotel. We hopen dat deze uitgebreide audio-gids je een onvergetelijke avond heeft bezorgd!</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let currentId = null;
+    let isPaused = false;
+    let availableVoices = [];
+
+    function loadVoices() {
+        availableVoices = window.speechSynthesis.getVoices();
+        const select = document.getElementById('voice-select');
+        if (availableVoices.length === 0) return;
+        
+        select.innerHTML = ''; 
+        let dutchVoices = availableVoices.filter(v => v.lang.startsWith('nl'));
+        if(dutchVoices.length === 0) dutchVoices = availableVoices;
+
+        dutchVoices.forEach(voice => {
+            const option = document.createElement('option');
+            let label = voice.name;
+            if (!voice.localService || label.includes('Premium') || label.includes('Google') || label.includes('Neural')) {
+                label = '☁️ ' + label + ' (Hoge Kwaliteit)';
+            } else {
+                label = '📱 ' + label + ' (Lokaal)';
+            }
+            option.value = voice.name;
+            option.textContent = label;
+            select.appendChild(option);
+        });
+    }
+
+    window.speechSynthesis.onvoiceschanged = loadVoices;
+    loadVoices();
+
+    function toggleText(itemId) {
+        const itemEl = document.getElementById(itemId);
+        const fullTextDiv = itemEl.querySelector('.full-text');
+        const toggleBtn = itemEl.querySelector('.text-toggle-btn');
+
+        if (fullTextDiv.style.display === 'block') {
+            fullTextDiv.style.display = 'none';
+            toggleBtn.innerHTML = '📖 Volledige tekst meelezen...';
+        } else {
+            fullTextDiv.style.display = 'block';
+            toggleBtn.innerHTML = '📕 Tekst verbergen';
+        }
+    }
+
+    function resetAllUI() {
+        document.querySelectorAll('.route-item').forEach(el => {
+            el.classList.remove('playing');
+            el.classList.remove('paused');
+            el.querySelector('.play-btn').innerText = '▶';
+        });
+    }
+
+    function toggleSpeech(itemId) {
+        const itemEl = document.getElementById(itemId);
+        const btn = itemEl.querySelector('.play-btn');
+        const text = itemEl.querySelector('.full-text').textContent;
+
+        if (currentId === itemId) {
+            if (window.speechSynthesis.speaking) {
+                if (isPaused) {
+                    window.speechSynthesis.resume();
+                    isPaused = false;
+                    itemEl.classList.remove('paused');
+                    itemEl.classList.add('playing');
+                    btn.innerText = '⏸';
+                } else {
+                    window.speechSynthesis.pause();
+                    isPaused = true;
+                    itemEl.classList.remove('playing');
+                    itemEl.classList.add('paused');
+                    btn.innerText = '▶';
+                }
+                return;
+            }
+        }
+
+        window.speechSynthesis.cancel(); 
+        resetAllUI();
+
+        currentId = itemId;
+        isPaused = false;
+        
+        itemEl.classList.add('playing');
+        btn.innerText = '⏸';
+
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'nl-NL';
+
+        const select = document.getElementById('voice-select');
+        if (select.value) {
+            const selectedVoice = availableVoices.find(v => v.name === select.value);
+            if (selectedVoice) {
+                utterance.voice = selectedVoice;
+            }
+        }
+
+        utterance.onend = function() {
+            resetAllUI();
+            currentId = null;
+        };
+
+        utterance.onerror = function(e) {
+            if(e.error !== 'interrupted' && e.error !== 'canceled') {
+                resetAllUI();
+                currentId = null;
+            }
+        };
+
+        window.speechSynthesis.speak(utterance);
+    }
+</script>
+
+</body>
+</html>
